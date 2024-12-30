@@ -51,7 +51,7 @@ mvn clean install
 
 Double-cliquez sur le fichier JAR généré ou exécutez :
 ```bash
-java -jar target/Population-0.0.1-SNAPSHOT.jar
+java -jar target/Population-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
 ## Utilisation
