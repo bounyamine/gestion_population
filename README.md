@@ -44,7 +44,7 @@ db.password=votre_mot_de_passe
 
 4. Compilez le projet :
 ```bash
-mvn clean install
+mvn install
 ```
 
 ## Lancement
@@ -57,6 +57,8 @@ java -jar target/Population-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ## Utilisation
 
 ### Interface principale
+
+![Calculator App Screenshot](https://github.com/bounyamine/gestion_population/resources/main.png)
 
 - **Panneau gauche** : Formulaire d'ajout de localité
 - **Centre** : Table des localités avec barre de recherche
