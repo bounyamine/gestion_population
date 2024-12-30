@@ -33,7 +33,7 @@ public class GestionPopulation implements AutoCloseable {
         try {
             Properties props = new Properties();
             // Chargement du fichier depuis le chemin absolu
-            String path = "src/main/resources/database.properties";
+            String path = "resources/database.properties";
             FileInputStream fis = new FileInputStream(path);
             props.load(fis);
 
