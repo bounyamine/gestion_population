@@ -34,7 +34,7 @@ USE population_en;
 ```
 
 3. Configurez la connexion à la base de données :
-   - Ouvrez `src/main/resources/database.properties`
+   - Ouvrez `resources/database.properties`
    - Modifiez les paramètres suivants :
 ```properties
 db.url=jdbc:mysql://localhost:3306/population_en
@@ -93,8 +93,8 @@ src/
 │   │       └── ui/
 │   │           └── components/
 │   │           └── utils/
-│   └── resources/
 │       └── application.properties
+resources/
 ```
 
 ## Contribution
