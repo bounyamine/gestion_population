@@ -44,7 +44,7 @@ db.password=votre_mot_de_passe
 
 4. Compilez le projet :
 ```bash
-mvn clean install
+mvn install
 ```
 
 ## Lancement
