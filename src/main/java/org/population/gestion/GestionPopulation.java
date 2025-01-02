@@ -123,6 +123,10 @@ public class GestionPopulation implements AutoCloseable {
                 .collect(Collectors.toList());
     }
 
+    public Connection getConnection() {
+        return connexionDB;
+    }
+
     // Format de sortie pour le rapport de densité
     public enum FormatRapport {
         TXT, CSV, HTML

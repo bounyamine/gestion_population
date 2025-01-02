@@ -10,88 +10,139 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * Classe utilitaire pour la gestion des styles de l'interface utilisateur.
- * Fournit des méthodes et constantes pour maintenir une apparence cohérente.
+ * Utility class for managing UI styles and theme configurations.
+ * Provides a centralized system for maintaining consistent application appearance.
  */
-public class Styles {
+public final class Styles {
 
-    // Couleurs des textes
-    public static final Color COULEUR_PRIMAIRE = new Color(137, 201, 99);
-    public static final Color COULEUR_SECONDAIRE = new Color(90, 91, 220);
-    public static final Color COULEUR_ACCENT = new Color(59, 130, 246);
-    public static final Color COULEUR_TEXTE = new Color(30, 41, 59);
-    public static final Color COULEUR_ERREUR = new Color(239, 68, 68);
-    public static final Color COULEUR_SUCCES = new Color(34, 197, 94);
-    public static final Color COULEUR_AVERTISSEMENT = new Color(234, 179, 8);
-
-    // Couleurs pour les dialogues et panneaux d'aide
-    public static final Color COULEUR_FOND_DIALOG = new Color(255, 255, 255);
-    public static final Color COULEUR_BORDURE_SECTION = new Color(226, 232, 240);
-    public static final Color COULEUR_FOND_ONGLET = new Color(248, 250, 252);
-    public static final Color COULEUR_ONGLET_ACTIF = new Color(59, 130, 246);
-    public static final Color COULEUR_TEXTE_ONGLET = new Color(71, 85, 105);
-    public static final Color COULEUR_TEXTE_AIDE = new Color(51, 65, 85);
-
-    // Nouvelles couleurs pour les tableaux
-    public static final Color COULEUR_TABLEAU_LIGNE_ALTERNEE = new Color(241, 245, 249);
-    public static final Color COULEUR_TABLEAU_SELECTION = new Color(37, 99, 235, 180);
-    public static final Color COULEUR_TABLEAU_GRILLE = new Color(226, 232, 240);
-    public static final Color COULEUR_TABLEAU_ENTETE = new Color(248, 250, 252);
-
-    // Configuration des polices
-    public static final Font POLICE_PRINCIPALE = new Font("Segoe UI", Font.PLAIN, 12);
-    public static final Font POLICE_TITRE = new Font("Segoe UI", Font.BOLD, 16);
-    public static final Font POLICE_SOUS_TITRE = new Font("Segoe UI", Font.BOLD, 14);
-    public static final Font POLICE_TABLEAU = new Font("Segoe UI", Font.PLAIN, 13);
-    public static final Font POLICE_TABLEAU_ENTETE = new Font("Segoe UI", Font.BOLD, 13);
-
-    // Polices pour les dialogues
-    public static final Font POLICE_DIALOG_TITRE = new Font("Segoe UI", Font.BOLD, 15);
-    public static final Font POLICE_DIALOG_SECTION = new Font("Segoe UI", Font.BOLD, 13);
-    public static final Font POLICE_DIALOG_CONTENU = new Font("Segoe UI", Font.PLAIN, 12);
-
-    // Constantes de dimensions
-    private static final int BUTTON_HEIGHT = 40;
-    private static final int BUTTON_MIN_WIDTH = 100;
-    private static final int BUTTON_PREF_WIDTH = 120;
-    private static final int BUTTON_MAX_WIDTH = 150;
-    private static final int PADDING = 10;
-    private static final int ROW_HEIGHT = 30;
-
-    // Constantes de dimensions pour les dialogues
     public static final int DIALOG_PADDING = 15;
-    public static final int SECTION_PADDING = 10;
-    public static final int ONGLET_HEIGHT = 35;
-    public static final int SECTION_SPACING = 20;
-    public static final Dimension DIALOG_BUTTON_SIZE = new Dimension(100, 35);
-    public static final int DIALOG_BORDER_RADIUS = 8;
 
-    // Styles de bordures réutilisables
-    public static final Border BORDURE_SECTION = BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(COULEUR_BORDURE_SECTION),
-            BorderFactory.createEmptyBorder(SECTION_PADDING, SECTION_PADDING, SECTION_PADDING, SECTION_PADDING)
-    );
-
-    public static final Border BORDURE_DIALOG = BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(COULEUR_ACCENT, 1),
-            BorderFactory.createEmptyBorder(DIALOG_PADDING, DIALOG_PADDING, DIALOG_PADDING, DIALOG_PADDING)
-    );
-
-    /**
-     * Crée un bouton stylisé avec le texte spécifié.
-     * @param text Le texte du bouton
-     * @return JButton Un bouton stylisé
-     */
-    public static JButton createStyledButton(String text) {
-        return createStyledButton(text, COULEUR_ACCENT, COULEUR_TEXTE);
+    private Styles() {
+        // Prevent instantiation of utility class
+        throw new AssertionError("Utility class - do not instantiate");
     }
 
     /**
-     * Crée un bouton stylisé avec des couleurs personnalisées.
-     * @param text Le texte du bouton
-     * @param backgroundColor Couleur de fond
-     * @param textColor Couleur du texte
-     * @return JButton Un bouton stylisé
+     * Theme colors for the application UI.
+     */
+    public static final class Colors {
+        // Brand colors
+        public static final Color PRIMARY = new Color(37, 99, 235);
+        public static final Color SECONDARY = new Color(227, 229, 231);
+        public static final Color ACCENT = new Color(59, 130, 246);
+
+        // Semantic colors
+        public static final Color TEXT = new Color(30, 41, 59);
+        public static final Color ERROR = new Color(239, 68, 68);
+        public static final Color SUCCESS = new Color(34, 197, 94);
+        public static final Color WARNING = new Color(234, 179, 8);
+
+        // Component-specific colors
+        public static final Color DIALOG_BACKGROUND = Color.WHITE;
+        public static final Color SECTION_BORDER = new Color(226, 232, 240);
+        public static final Color TAB_BACKGROUND = new Color(248, 250, 252);
+        public static final Color ACTIVE_TAB = ACCENT;
+        public static final Color TAB_TEXT = new Color(71, 85, 105);
+        public static final Color HELP_TEXT = new Color(51, 65, 85);
+
+        // Table-specific colors
+        public static final Color TABLE_ALTERNATE_ROW = new Color(241, 245, 249);
+        public static final Color TABLE_SELECTION = new Color(37, 99, 235, 180);
+        public static final Color TABLE_GRID = new Color(226, 232, 240);
+        public static final Color TABLE_HEADER = new Color(248, 250, 252);
+        public static final Color TABLE_SELECTION_TEXT = Color.WHITE;
+
+        private Colors() {
+            throw new AssertionError("Constants class - do not instantiate");
+        }
+    }
+
+    /**
+     * Typography configurations for the application UI.
+     */
+    public static final class Fonts {
+        private static final String FONT_FAMILY = "Segoe UI";
+
+        public static final Font BASE = new Font(FONT_FAMILY, Font.PLAIN, 12);
+        public static final Font TITLE = new Font(FONT_FAMILY, Font.BOLD, 16);
+        public static final Font SUBTITLE = new Font(FONT_FAMILY, Font.BOLD, 14);
+        public static final Font TABLE = new Font(FONT_FAMILY, Font.PLAIN, 13);
+        public static final Font TABLE_HEADER = new Font(FONT_FAMILY, Font.BOLD, 13);
+        public static final Font DIALOG_TITLE = new Font(FONT_FAMILY, Font.BOLD, 15);
+        public static final Font DIALOG_SECTION = new Font(FONT_FAMILY, Font.BOLD, 13);
+        public static final Font DIALOG_CONTENT = new Font(FONT_FAMILY, Font.PLAIN, 12);
+
+        private Fonts() {
+            throw new AssertionError("Constants class - do not instantiate");
+        }
+    }
+
+    /**
+     * Layout dimensions and spacing constants.
+     */
+    public static final class Dimensions {
+        public static final int BUTTON_HEIGHT = 40;
+        public static final int BUTTON_MIN_WIDTH = 100;
+        public static final int BUTTON_PREF_WIDTH = 120;
+        public static final int BUTTON_MAX_WIDTH = 150;
+        public static final int PADDING = 10;
+        public static final int ROW_HEIGHT = 30;
+        public static final int DIALOG_PADDING = 15;
+        public static final int SECTION_PADDING = 10;
+        public static final int TAB_HEIGHT = 35;
+        public static final int SECTION_SPACING = 20;
+        public static final int DIALOG_BORDER_RADIUS = 8;
+        public static final Dimension DIALOG_BUTTON_SIZE = new Dimension(100, 35);
+
+        private Dimensions() {
+            throw new AssertionError("Constants class - do not instantiate");
+        }
+    }
+
+    /**
+     * Common borders used throughout the application.
+     */
+    public static final class Borders {
+        public static final Border SECTION = BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Colors.SECTION_BORDER),
+                BorderFactory.createEmptyBorder(
+                        Dimensions.SECTION_PADDING,
+                        Dimensions.SECTION_PADDING,
+                        Dimensions.SECTION_PADDING,
+                        Dimensions.SECTION_PADDING
+                )
+        );
+
+        public static final Border DIALOG = BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Colors.ACCENT, 1),
+                BorderFactory.createEmptyBorder(
+                        Dimensions.DIALOG_PADDING,
+                        Dimensions.DIALOG_PADDING,
+                        Dimensions.DIALOG_PADDING,
+                        Dimensions.DIALOG_PADDING
+                )
+        );
+
+        private Borders() {
+            throw new AssertionError("Constants class - do not instantiate");
+        }
+    }
+
+    /**
+     * Creates a styled button with default colors.
+     * @param text The button text
+     * @return A styled JButton instance
+     */
+    public static JButton createStyledButton(String text) {
+        return createStyledButton(text, Colors.ACCENT, Colors.TEXT);
+    }
+
+    /**
+     * Creates a styled button with custom colors.
+     * @param text The button text
+     * @param backgroundColor Button background color
+     * @param textColor Button text color
+     * @return A styled JButton instance
      */
     public static JButton createStyledButton(String text, Color backgroundColor, Color textColor) {
         JButton button = new JButton(text);
@@ -100,142 +151,94 @@ public class Styles {
     }
 
     /**
-     * Applique un style à un bouton existant.
-     * @param button Le bouton à styler
-     * @param backgroundColor Couleur de fond
-     * @param textColor Couleur du texte
+     * Applies styling to an existing button.
+     * @param button The button to style
+     * @param backgroundColor Button background color
+     * @param textColor Button text color
      */
     public static void styleButton(JButton button, Color backgroundColor, Color textColor) {
-        // Configuration des dimensions
-        button.setPreferredSize(new Dimension(BUTTON_PREF_WIDTH, BUTTON_HEIGHT));
-        button.setMinimumSize(new Dimension(BUTTON_MIN_WIDTH, BUTTON_HEIGHT));
-        button.setMaximumSize(new Dimension(BUTTON_MAX_WIDTH, BUTTON_HEIGHT));
+        button.setPreferredSize(new Dimension(Dimensions.BUTTON_PREF_WIDTH, Dimensions.BUTTON_HEIGHT));
+        button.setMinimumSize(new Dimension(Dimensions.BUTTON_MIN_WIDTH, Dimensions.BUTTON_HEIGHT));
+        button.setMaximumSize(new Dimension(Dimensions.BUTTON_MAX_WIDTH, Dimensions.BUTTON_HEIGHT));
 
-        // Style du bouton
         button.setBackground(backgroundColor);
         button.setForeground(textColor);
-        button.setFont(POLICE_PRINCIPALE.deriveFont(Font.BOLD));
-
-        // Création d'une bordure arrondie
-        Border roundedBorder = BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(backgroundColor.darker(), 1),
-                BorderFactory.createEmptyBorder(PADDING/2, PADDING, PADDING/2, PADDING)
-        );
-        button.setBorder(roundedBorder);
-
-        // Paramètres d'apparence
+        button.setFont(Fonts.BASE.deriveFont(Font.BOLD));
         button.setFocusPainted(false);
         button.setContentAreaFilled(true);
         button.setOpaque(true);
 
-        // Gestionnaire d'événements pour les effets visuels
-        ButtonStateHandler stateHandler = new ButtonStateHandler(button, backgroundColor);
-        button.addMouseListener(stateHandler);
+        Border roundedBorder = BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(backgroundColor.darker(), 1),
+                BorderFactory.createEmptyBorder(
+                        Dimensions.PADDING / 2,
+                        Dimensions.PADDING,
+                        Dimensions.PADDING / 2,
+                        Dimensions.PADDING
+                )
+        );
+        button.setBorder(roundedBorder);
+
+        button.addMouseListener(new ButtonStateHandler(button, backgroundColor));
     }
 
     /**
-     * Applique un style à un champ de texte.
-     * @param textField Le champ de texte à styler
+     * Applies styling to a text field.
+     * @param textField The text field to style
      */
     public static void styleTextField(JTextField textField) {
-        textField.setFont(POLICE_PRINCIPALE);
+        textField.setFont(Fonts.BASE);
         textField.setBackground(Color.WHITE);
-        textField.setForeground(COULEUR_PRIMAIRE);
-        textField.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(COULEUR_SECONDAIRE),
-                BorderFactory.createEmptyBorder(5, 8, 5, 8)
-        ));
+        textField.setForeground(Colors.PRIMARY);
 
-        textField.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                textField.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(COULEUR_ACCENT),
-                        BorderFactory.createEmptyBorder(5, 8, 5, 8)
-                ));
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                textField.setBorder(BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(COULEUR_SECONDAIRE),
-                        BorderFactory.createEmptyBorder(5, 8, 5, 8)
-                ));
-            }
-        });
+        TextFieldFocusHandler focusHandler = new TextFieldFocusHandler(textField);
+        textField.addFocusListener(focusHandler);
+        focusHandler.updateBorder(false);
     }
 
     /**
-     * Applique un style à un panneau.
-     * @param panel Le panneau à styler
-     */
-    public static void stylePanel(JPanel panel) {
-        panel.setBackground(COULEUR_PRIMAIRE);
-        panel.setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
-    }
-
-    /**
-     * Applique un style complet à une JTable.
-     * @param table La table à styler
+     * Applies styling to a table.
+     * @param table The table to style
      */
     public static void styleTable(JTable table) {
-        // Configuration générale
-        table.setFont(POLICE_TABLEAU);
-        table.setRowHeight(ROW_HEIGHT);
-        table.setBackground(COULEUR_PRIMAIRE);
-        table.setForeground(COULEUR_TEXTE);
-        table.setSelectionBackground(COULEUR_TABLEAU_SELECTION);
-        table.setSelectionForeground(COULEUR_TEXTE);
-        table.setGridColor(COULEUR_TABLEAU_GRILLE);
+        table.setFont(Fonts.TABLE);
+        table.setRowHeight(Dimensions.ROW_HEIGHT);
+        table.setBackground(Colors.PRIMARY);
+        table.setForeground(Colors.TEXT);
+        table.setSelectionBackground(Colors.TABLE_SELECTION);
+        table.setSelectionForeground(Colors.TABLE_SELECTION_TEXT);
+        table.setGridColor(Colors.TABLE_GRID);
         table.setShowGrid(true);
         table.setShowHorizontalLines(true);
         table.setShowVerticalLines(true);
-
-        // Configuration de l'en-tête
-        styleTableHeader(table.getTableHeader());
-
-        // Configuration des lignes alternées
-        table.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value,
-                                                           boolean isSelected, boolean hasFocus, int row, int column) {
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-                if (!isSelected) {
-                    c.setBackground(row % 2 == 0 ? COULEUR_PRIMAIRE : COULEUR_TABLEAU_LIGNE_ALTERNEE);
-                }
-
-                // Ajout d'un padding interne aux cellules
-                ((JLabel) c).setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
-                return c;
-            }
-        });
-
-        // Configuration de la sélection
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setColumnSelectionAllowed(false);
         table.setRowSelectionAllowed(true);
+
+        styleTableHeader(table.getTableHeader());
+        table.setDefaultRenderer(Object.class, new AlternatingRowRenderer());
     }
 
     /**
-     * Style l'en-tête d'une table.
-     * @param header L'en-tête de la table à styler
+     * Styles the header of a table.
+     * @param header The table header to style
      */
     public static void styleTableHeader(JTableHeader header) {
-        header.setBackground(COULEUR_TABLEAU_ENTETE);
-        header.setForeground(COULEUR_TEXTE);
-        header.setFont(POLICE_TABLEAU_ENTETE);
-        header.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, COULEUR_ACCENT));
+        header.setBackground(Colors.TABLE_HEADER);
+        header.setForeground(Colors.TEXT);
+        header.setFont(Fonts.TABLE_HEADER);
+        header.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Colors.ACCENT));
         header.setReorderingAllowed(false);
 
-        // Style personnalisé pour les cellules d'en-tête
         header.setDefaultRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
-                                                           boolean isSelected, boolean hasFocus, int row, int column) {
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                c.setBackground(COULEUR_TABLEAU_ENTETE);
-                c.setFont(POLICE_TABLEAU_ENTETE);
+                                                           boolean isSelected, boolean hasFocus,
+                                                           int row, int column) {
+                Component c = super.getTableCellRendererComponent(
+                        table, value, isSelected, hasFocus, row, column);
+                c.setBackground(Colors.TABLE_HEADER);
+                c.setFont(Fonts.TABLE_HEADER);
                 ((JLabel) c).setBorder(BorderFactory.createEmptyBorder(8, 5, 8, 5));
                 return c;
             }
@@ -243,9 +246,9 @@ public class Styles {
     }
 
     /**
-     * Configure les colonnes d'une table avec des largeurs optimisées.
-     * @param table La table à configurer
-     * @param columnWidths Tableau des largeurs préférées pour chaque colonne
+     * Configures table columns with specified widths.
+     * @param table The table to configure
+     * @param columnWidths Array of preferred widths for each column
      */
     public static void configureTableColumns(JTable table, int[] columnWidths) {
         TableColumnModel columnModel = table.getColumnModel();
@@ -255,67 +258,43 @@ public class Styles {
     }
 
     /**
-     * Style le conteneur de défilement d'une table.
-     * @param scrollPane Le conteneur de défilement à styler
+     * Styles a table's scroll pane.
+     * @param scrollPane The scroll pane to style
      */
     public static void styleTableScrollPane(JScrollPane scrollPane) {
-        scrollPane.setBorder(BorderFactory.createLineBorder(COULEUR_TABLEAU_GRILLE));
-        scrollPane.getViewport().setBackground(COULEUR_PRIMAIRE);
+        scrollPane.setBorder(BorderFactory.createLineBorder(Colors.TABLE_GRID));
+        scrollPane.getViewport().setBackground(Colors.PRIMARY);
 
-        // Style de la barre de défilement
         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
-        verticalScrollBar.setBackground(COULEUR_PRIMAIRE);
-        verticalScrollBar.setUI(new BasicScrollBarUI() {
-            @Override
-            protected void configureScrollBarColors() {
-                this.thumbColor = COULEUR_SECONDAIRE;
-                this.trackColor = COULEUR_PRIMAIRE;
-            }
-
-            @Override
-            protected JButton createDecreaseButton(int orientation) {
-                return createZeroButton();
-            }
-
-            @Override
-            protected JButton createIncreaseButton(int orientation) {
-                return createZeroButton();
-            }
-
-            private JButton createZeroButton() {
-                JButton button = new JButton();
-                button.setPreferredSize(new Dimension(0, 0));
-                return button;
-            }
-        });
+        verticalScrollBar.setBackground(Colors.PRIMARY);
+        verticalScrollBar.setUI(new ModernScrollBarUI());
     }
 
     /**
-     * Style un JTabbedPane pour les dialogues.
-     * @param tabbedPane Le JTabbedPane à styler
+     * Styles a tabbed pane for dialogs.
+     * @param tabbedPane The tabbed pane to style
      */
     public static void styleTabbedPane(JTabbedPane tabbedPane) {
-        tabbedPane.setFont(POLICE_DIALOG_SECTION);
-        tabbedPane.setBackground(COULEUR_FOND_DIALOG);
-        tabbedPane.setForeground(COULEUR_TEXTE_ONGLET);
+        tabbedPane.setFont(Fonts.DIALOG_SECTION);
+        tabbedPane.setBackground(Colors.DIALOG_BACKGROUND);
+        tabbedPane.setForeground(Colors.TAB_TEXT);
 
-        // Style des onglets
-        UIManager.put("TabbedPane.selected", COULEUR_ONGLET_ACTIF);
-        UIManager.put("TabbedPane.contentAreaColor", COULEUR_FOND_DIALOG);
-        UIManager.put("TabbedPane.tabAreaBackground", COULEUR_FOND_ONGLET);
-        UIManager.put("TabbedPane.focus", COULEUR_FOND_DIALOG);
+        UIManager.put("TabbedPane.selected", Colors.ACTIVE_TAB);
+        UIManager.put("TabbedPane.contentAreaColor", Colors.DIALOG_BACKGROUND);
+        UIManager.put("TabbedPane.tabAreaBackground", Colors.TAB_BACKGROUND);
+        UIManager.put("TabbedPane.focus", Colors.DIALOG_BACKGROUND);
 
         tabbedPane.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
             @Override
             protected int calculateTabHeight(int tabPlacement, int tabIndex, int fontHeight) {
-                return ONGLET_HEIGHT;
+                return Dimensions.TAB_HEIGHT;
             }
 
             @Override
             protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex,
                                           int x, int y, int w, int h, boolean isSelected) {
                 if (isSelected) {
-                    g.setColor(COULEUR_ONGLET_ACTIF);
+                    g.setColor(Colors.ACTIVE_TAB);
                     g.fillRect(x, y + h - 2, w, 2);
                 }
             }
@@ -323,54 +302,123 @@ public class Styles {
     }
 
     /**
-     * Style une zone de texte pour l'aide.
-     * @param textArea La JTextArea à styler
+     * Styles a text area for help content.
+     * @param textArea The text area to style
      */
     public static void styleHelpTextArea(JTextArea textArea) {
-        textArea.setFont(POLICE_DIALOG_CONTENU);
-        textArea.setForeground(COULEUR_TEXTE_AIDE);
-        textArea.setBackground(COULEUR_FOND_DIALOG);
+        textArea.setFont(Fonts.DIALOG_CONTENT);
+        textArea.setForeground(Colors.HELP_TEXT);
+        textArea.setBackground(Colors.DIALOG_BACKGROUND);
         textArea.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         textArea.setMargin(new Insets(5, 5, 5, 5));
     }
 
     /**
-     * Style un panneau de dialogue.
-     * @param panel Le JPanel à styler
+     * Styles a dialog panel.
+     * @param panel The panel to style
      */
     public static void styleDialogPanel(JPanel panel) {
-        panel.setBackground(COULEUR_FOND_DIALOG);
-        panel.setBorder(BORDURE_DIALOG);
+        panel.setBackground(Colors.DIALOG_BACKGROUND);
+        panel.setBorder(Borders.DIALOG);
     }
 
     /**
-     * Style un bouton de dialogue.
-     * @param button Le JButton à styler
-     * @param isDefault true si c'est le bouton par défaut
+     * Styles a dialog button.
+     * @param button The button to style
+     * @param isDefault Whether this is the default button
      */
     public static void styleDialogButton(JButton button, boolean isDefault) {
-        Color bgColor = isDefault ? COULEUR_ACCENT : new Color(243, 244, 246);
-        Color fgColor = isDefault ? Color.WHITE : COULEUR_TEXTE;
+        Color bgColor = isDefault ? Colors.ACCENT : new Color(243, 244, 246);
+        Color fgColor = isDefault ? Color.WHITE : Colors.TEXT;
 
-        button.setPreferredSize(DIALOG_BUTTON_SIZE);
-        button.setFont(POLICE_DIALOG_CONTENU.deriveFont(Font.BOLD));
+        button.setPreferredSize(Dimensions.DIALOG_BUTTON_SIZE);
+        button.setFont(Fonts.DIALOG_CONTENT.deriveFont(Font.BOLD));
         button.setBackground(bgColor);
         button.setForeground(fgColor);
         button.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
         button.setFocusPainted(false);
 
-        // Effets de survol
         button.addMouseListener(new ButtonStateHandler(button, bgColor));
     }
 
     /**
-     * Classe interne pour gérer les états du bouton.
+     * Modern scroll bar UI implementation.
      */
+    private static class ModernScrollBarUI extends BasicScrollBarUI {
+        @Override
+        protected void configureScrollBarColors() {
+            this.thumbColor = Colors.SECONDARY;
+            this.trackColor = Colors.PRIMARY;
+        }
+
+        @Override
+        protected JButton createDecreaseButton(int orientation) {
+            return createZeroButton();
+        }
+
+        @Override
+        protected JButton createIncreaseButton(int orientation) {
+            return createZeroButton();
+        }
+
+        private JButton createZeroButton() {
+            JButton button = new JButton();
+            button.setPreferredSize(new Dimension(0, 0));
+            return button;
+        }
+    }
+
+    // Private helper classes
+
+    private static class TextFieldFocusHandler extends FocusAdapter {
+        private final JTextField textField;
+
+        TextFieldFocusHandler(JTextField textField) {
+            this.textField = textField;
+        }
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            updateBorder(true);
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            updateBorder(false);
+        }
+
+        void updateBorder(boolean focused) {
+            Color borderColor = focused ? Colors.ACCENT : Colors.SECONDARY;
+            textField.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(borderColor),
+                    BorderFactory.createEmptyBorder(5, 0, 5, 0)
+            ));
+        }
+    }
+
+    private static class AlternatingRowRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus,
+                                                       int row, int column) {
+            Component c = super.getTableCellRendererComponent(
+                    table, value, isSelected, hasFocus, row, column);
+
+            if (!isSelected) {
+                c.setBackground(row % 2 == 0 ?
+                        Colors.SECONDARY : Colors.TABLE_ALTERNATE_ROW);
+            }
+
+            ((JLabel) c).setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
+            return c;
+        }
+    }
+
     private static class ButtonStateHandler extends MouseAdapter {
         private final JButton button;
         private final Color defaultColor;
 
-        public ButtonStateHandler(JButton button, Color defaultColor) {
+        ButtonStateHandler(JButton button, Color defaultColor) {
             this.button = button;
             this.defaultColor = defaultColor;
         }

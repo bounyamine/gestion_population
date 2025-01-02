@@ -16,11 +16,9 @@ public class FormPanel extends JPanel {
     }
 
     private void setupUI() {
-        setLayout(new BorderLayout(5, 5));
-        setPreferredSize(new Dimension(250, 0));
-        setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder("Nouvelle localité"),
-                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(200, 0));
+        setBorder(BorderFactory.createTitledBorder("Nouvelle localité"));
 
         JPanel form = createForm();
         add(form, BorderLayout.NORTH);
@@ -30,12 +28,15 @@ public class FormPanel extends JPanel {
         JPanel form = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(2, 2, 2, 2);
 
         champNom = new JTextField(20);
         champPopulation = new JTextField(20);
         champSuperficie = new JTextField(20);
         comboType = new JComboBox<>(TypePopulation.values());
+        Styles.styleTextField(champNom);
+        Styles.styleTextField(champPopulation);
+        Styles.styleTextField(champSuperficie);
         btnAjouter = Styles.createStyledButton("Ajouter");
 
         // Ajout des composants
@@ -46,8 +47,8 @@ public class FormPanel extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        gbc.insets = new Insets(15, 8, 8, 8);
+        gbc.gridwidth = 8;
+        gbc.insets = new Insets(15, 0, 8, 0);
         form.add(btnAjouter, gbc);
 
         return form;

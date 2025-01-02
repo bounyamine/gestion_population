@@ -7,10 +7,9 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
-        import java.util.List;
+import java.util.List;
 
-import static org.population.ui.utils.Styles.DIALOG_BUTTON_SIZE;
-import static org.population.ui.utils.Styles.POLICE_TITRE;
+import static org.population.ui.utils.Styles.Fonts.TITLE;
 
 public class TablePanel extends JPanel {
     private JTable tableLocalites;
@@ -79,6 +78,7 @@ public class TablePanel extends JPanel {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         searchField = new JTextField(20);
         searchField.putClientProperty("JTextField.placeholderText", "Entrez le nom d'une localité...");
+        Styles.styleTextField(searchField);
         searchPanel.add(new JLabel("Rechercher une localité:"));
         searchPanel.add(searchField);
         add(searchPanel, BorderLayout.NORTH);
@@ -89,7 +89,7 @@ public class TablePanel extends JPanel {
         totalPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         labelPopulationTotale = new JLabel("Population totale: 0 habitants");
         labelPopulationTotale.setFont(labelPopulationTotale.getFont().deriveFont(Font.BOLD));
-        labelPopulationTotale.setFont(POLICE_TITRE.deriveFont(Font.BOLD));
+        labelPopulationTotale.setFont(TITLE.deriveFont(Font.BOLD));
         totalPanel.add(labelPopulationTotale);
         add(totalPanel, BorderLayout.SOUTH);
     }

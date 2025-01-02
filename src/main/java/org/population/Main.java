@@ -1,7 +1,6 @@
 package org.population;
+import org.population.service.DatabaseUpdateService;
 import org.population.ui.components.*;
-import org.population.ui.components.FormPanel;
-import org.population.ui.components.StatsPanel;
 import org.population.ui.utils.Styles;
 import org.population.modele.*;
 import org.population.modele.Localite.TypePopulation;
@@ -27,21 +26,46 @@ import java.util.List;
 import java.util.Map;
 
 import static org.population.ui.utils.Styles.*;
+import static org.population.ui.utils.Styles.Colors.ACCENT;
+import static org.population.ui.utils.Styles.Colors.TEXT;
+import static org.population.ui.utils.Styles.Fonts.BASE;
+import static org.population.ui.utils.Styles.Fonts.SUBTITLE;
 
 public class Main extends JFrame {
     private GestionPopulation gestion;
     private FormPanel formPanel;
     private TablePanel tablePanel;
     private StatsPanel statsPanel;
+    private DatabaseUpdateService updateService;
 
     public Main() {
         try {
             gestion = new GestionPopulation();
+            updateService = new DatabaseUpdateService(gestion);
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             initUI();
+            setupRealTimeUpdates();
         } catch (Exception e) {
             handleInitializationError(e);
         }
+    }
+
+    private void setupRealTimeUpdates() {
+        updateService.addUpdateListener(updatedData -> {
+            SwingUtilities.invokeLater(() -> {
+                tablePanel.updateTable(updatedData);
+                Map<TypePopulation, DoubleSummaryStatistics> stats = gestion.analyserParType();
+                statsPanel.updateCharts(stats);
+            });
+        });
+
+        updateService.startMonitoring();
+    }
+
+    @Override
+    public void dispose() {
+        updateService.stopMonitoring();
+        super.dispose();
     }
 
     private void initUI() {
@@ -128,6 +152,7 @@ public class Main extends JFrame {
             Localite localite = new Localite(nom, population, superficie, type);
             gestion.ajouterLocalite(localite);
             refreshData();
+            updateService.checkForUpdates();
             formPanel.clear();
 
             JOptionPane.showMessageDialog(this,
@@ -281,12 +306,12 @@ public class Main extends JFrame {
 
         // Configuration de la bordure avec titre
         Border titledBorder = BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(COULEUR_ACCENT),
+                BorderFactory.createLineBorder(ACCENT),
                 title,
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION,
-                POLICE_SOUS_TITRE,
-                COULEUR_TEXTE
+                SUBTITLE,
+                TEXT
         );
 
         panel.setBorder(BorderFactory.createCompoundBorder(
@@ -300,8 +325,9 @@ public class Main extends JFrame {
         textArea.setBackground(null);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        textArea.setFont(POLICE_PRINCIPALE);
-        textArea.setForeground(COULEUR_TEXTE);
+        textArea.setFont(BASE);
+        textArea.setForeground(TEXT);
+        Styles.styleHelpTextArea(textArea);
 
         panel.add(textArea);
         return panel;
@@ -314,6 +340,7 @@ public class Main extends JFrame {
 
         // Panel principal avec GridBagLayout pour un alignement précis
         JPanel mainPanel = new JPanel(new GridBagLayout());
+        Styles.styleDialogPanel(mainPanel);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
