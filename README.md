@@ -58,7 +58,7 @@ java -jar target/Population-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ### Interface principale
 
-![Calculator App Screenshot](https://github.com/bounyamine/gestion_population/resources/main.png)
+![Main App Screenshot](https://github.com/bounyamine/gestion_population/blob/main/resources/main.png)
 
 - **Panneau gauche** : Formulaire d'ajout de localité
 - **Centre** : Table des localités avec barre de recherche
